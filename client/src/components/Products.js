@@ -11,7 +11,7 @@ const Products = (props) => {
     const [showForm, setShowForm] = useState(false)
     
     useEffect(()=>{
-        axios.get('/api/products')
+        axios.get('/api/departments')
         .then( res => setProducts(res.data))
         .catch( err => console.log(err))
     },[])

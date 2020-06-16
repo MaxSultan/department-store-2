@@ -7,6 +7,7 @@ import NoMatch from './components/NoMatch'
 import Products from './components/Products';
 import Home from './components/Home';
 import ProductView from './components/ProductView'
+import Departments from './components/Departments'
 
 
 function App() {
@@ -16,8 +17,8 @@ function App() {
    <Container>
      <Switch>
        <Route exact path='/' component={Home}></Route>
-       <Route exact path='/products' component={Products}></Route>
-       <Route exact path='/products/:id' component={ProductView}></Route>       
+       <Route exact path='/departments' component={Departments}></Route>
+       <Route exact path='/departments/:id' component={DepartmentView}></Route>       
        <Route component={NoMatch}></Route>
      </Switch>
    </Container>
