@@ -8,6 +8,7 @@ import Products from './components/Products';
 import Home from './components/Home';
 import ProductView from './components/ProductView'
 import Departments from './components/Departments'
+import DepartmentView from './components/DepartmentView'
 
 
 function App() {
