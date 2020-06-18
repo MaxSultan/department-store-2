@@ -1,5 +1,6 @@
 class Api::ItemsController < ApplicationController
     before_action :set_department, only:[:create, :index]
+    before_action :set_item, only: [:destroy]
 
     def index
         render json: @department.items.all
@@ -21,7 +22,7 @@ class Api::ItemsController < ApplicationController
     private
     
     def set_item
-        @item = item.find(params[:id])
+        @item = Item.find(params[:id])
     end 
 
     def set_department

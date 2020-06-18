@@ -18,8 +18,7 @@ function App() {
    <Container>
      <Switch>
        <Route exact path='/' component={Home}></Route>
-       <Route exact path='/departments' component={Departments}></Route>
-       <Route exact path='/departments/:id' component={DepartmentView}></Route>       
+       <Route exact path='/departments' component={Departments}></Route>     
        <Route component={NoMatch}></Route>
      </Switch>
    </Container>
