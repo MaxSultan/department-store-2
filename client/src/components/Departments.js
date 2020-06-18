@@ -43,10 +43,8 @@ export default function Departments(){
     }
 
     async function addItem(departmentId, itemObj){
-        console.log(itemObj)
-        Axios.post(`/api/departments/${departmentId}/items`, {...itemObj}).then(res => { 
+       const res =  Axios.post(`/api/departments/${departmentId}/items`, {...itemObj})
             setItems([...items, res.data])
-        }).catch(err => console.log(err))
     }
 
     useEffect(() => {
@@ -60,11 +58,19 @@ export default function Departments(){
                 <div style={{display:'flex', width:'70vw', justifyContent:'space-between'}}>
                     <h3>{d.name}</h3>
                     <Button onClick={()=> getItems(d.id)} color='green'>View</Button>
+                    <Button onClick={() => addItem} color='blue'>Add Item</Button>
                     <Button onClick={() => deleteDepartment(d.id)}color='red'>Delete</Button>
                 </div>)
             })}
-            
-            {items.length > 0 ?  <Items items={[...items]} setItems={setItems}addItem={addItem}/> : <div><h4>no items</h4><Button onClick={() => addItem()}>Add Item</Button></div> }
+
+            {items.length > 0 ?  
+            <Items 
+            items={[...items]} 
+            setItems={setItems}
+            addItem={addItem}
+            toggle={toggle}
+            setToggle={setToggle}
+            /> : <div><h4>no items</h4><Button onClick={() => addItem()}>Add Item</Button></div> }
             
             <Button onClick={() => setToggle(!toggle)}>Create New Department</Button>
             {toggle && <DepartmentForm add={addDepartment} edit={editDepartment} toggle={toggle} setToggle={setToggle} />}

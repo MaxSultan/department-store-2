@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { Form, Header, Icon, } from "semantic-ui-react";
-import axios from 'axios';
 
 const DepartmentForm = ({ add, toggle, setToggle, id, edit, initName }) => {
   const [name, setName] = useState(initName ? initName : "")

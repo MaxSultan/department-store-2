@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Item from './Item'
 import { Button, Card } from 'semantic-ui-react'
 import styled from 'styled-components';
 import Axios from 'axios';
+import ItemForm from './ItemForm'
 
-export default function Items({ addItem, items, setItems }) {
+export default function Items({ addItem, items, setItems, }) {
+    const [toggleItemForm, setToggleItemForm] = useState(false)
+    
 
     async function deleteItem(departmentId, id){
         const res = await Axios.delete(`/api/departments/${departmentId}/items/${id}`)
@@ -12,17 +15,22 @@ export default function Items({ addItem, items, setItems }) {
     }
 
     return (
+        <>
         <GridDiv>
             {/* add a way to show the department name */}
-       {items.map(i => (
+            {items.map(i => (
              <Card>
-                <Item {...i}></Item>
+                <Item id={i.id} name={i.name} price={i.price} description={i.description} departmentId={i.department_id} deleteItem={deleteItem}></Item>
+                
                 <Button color='blue'>Edit Item</Button>
-                <Button color='red' onClick={()=> deleteItem(i.department_id,i.id)}>Delete Item</Button>
+                
+                
             </Card>
-        ))}
-         <Button onClick={() => addItem()}>Add Item</Button>
+            ))}
+         <Button onClick={() => setToggleItemForm(!toggleItemForm)} >Add Item</Button>
         </GridDiv>
+        {toggleItemForm && <ItemForm departmentId={items[0].department_id} toggleItemForm={toggleItemForm} setToggleItemForm={setToggleItemForm} add={addItem}/>}
+        </>
         //if there are no items make it so the add items button still appears
         )}
 
